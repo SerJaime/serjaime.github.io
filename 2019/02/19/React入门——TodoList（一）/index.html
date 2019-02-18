@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="SerJaime">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://serjaime.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="react">
+
+
+    <meta name="description" content="工程初始化create-react-app todolist
+cd todolist
+yarn start
+工程目录文件简介src/index.js 入口文件
+src/app.test.js 自...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>React入门——TodoList（一） | SerJaime</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="SerJaime" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="SerJaime">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://serjaime.github.io">SerJaime</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archive</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="React入门——TodoList（一）">
+            
+	            React入门——TodoList（一）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/react学习笔记/">react学习笔记</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/react/">react</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/02/19</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="工程初始化"><a href="#工程初始化" class="headerlink" title="工程初始化"></a>工程初始化</h2><p><code>create-react-app todolist</code></p>
+<p><code>cd todolist</code></p>
+<p><code>yarn start</code></p>
+<h2 id="工程目录文件简介"><a href="#工程目录文件简介" class="headerlink" title="工程目录文件简介"></a>工程目录文件简介</h2><p><code>src/index.js</code> 入口文件</p>
+<p><code>src/app.test.js</code> 自动化测试</p>
+<p><code>registerServiceWorker</code></p>
+<p>PWA progressive web application</p>
+<p>部署在https协议的服务器上</p>
+<p>可实现客户端离线加载</p>
+<p><code>public/manifest.json</code> 可将应用存在桌面</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"short_name"</span>: <span class="string">"React App"</span>,</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"Create React App Sample"</span>,</span><br><span class="line">  <span class="attr">"icons"</span>: [ // 快捷方式图标</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"src"</span>: <span class="string">"favicon.ico"</span>,</span><br><span class="line">      <span class="attr">"sizes"</span>: <span class="string">"64x64 32x32 24x24 16x16"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"image/x-icon"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  "start_url": ".", // 打开的地址</span><br><span class="line">  "display": "standalone",</span><br><span class="line">  "theme_color": "#000000",</span><br><span class="line">  "background_color": "#ffffff"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="react中的组件"><a href="#react中的组件" class="headerlink" title="react中的组件"></a>react中的组件</h2><p>自定义组件大写开头</p>
+<p><code>_src/index.js_</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;; // 需要引入</span><br><span class="line">import ReactDOM from &apos;react-dom&apos;;</span><br><span class="line">import App from &apos;./App&apos;;</span><br><span class="line"></span><br><span class="line">// JSX &lt;App /&gt;</span><br><span class="line">ReactDOM.render(&lt;App /&gt;, document.getElementById(&apos;root&apos;));</span><br></pre></td></tr></table></figure></p>
+<p>reactDOM 将组件挂载在dom节点下</p>
+<p><code>_src/app.js_</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;; // React需要引入</span><br><span class="line">class App extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    // JSX</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        hello</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure></p>
+<p><strong>React需要引入，因为使用了JSX语法</strong></p>
+<p>render函数必须返回根节点</p>
+<p>react 16开始， render支持返回数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">export default function () &#123;</span><br><span class="line">    return [</span><br><span class="line">        &lt;div&gt;一步 01&lt;/div&gt;,</span><br><span class="line">        &lt;div&gt;一步 02&lt;/div&gt;,</span><br><span class="line">        &lt;div&gt;一步 03&lt;/div&gt;,</span><br><span class="line">        &lt;div&gt;一步 04&lt;/div&gt;</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>React 16为我们提供了Fragments。<br>Fragments与Vue.js的<template>功能类似，可做不可见的包裹元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Fragment &#125; from &apos;react&apos;</span><br><span class="line"></span><br><span class="line">export default function () &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;Fragment&gt;</span><br><span class="line">            &lt;div&gt;一步 01&lt;/div&gt;</span><br><span class="line">            &lt;div&gt;一步 02&lt;/div&gt;</span><br><span class="line">            &lt;div&gt;一步 03&lt;/div&gt;</span><br><span class="line">            &lt;div&gt;一步 04&lt;/div&gt;</span><br><span class="line">        &lt;/Fragment&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></template></p>
+<h2 id="实现todoLIst的增加删除功能"><a href="#实现todoLIst的增加删除功能" class="headerlink" title="实现todoLIst的增加删除功能"></a>实现todoLIst的增加删除功能</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">handleBtnClick() &#123;</span><br><span class="line"><span class="keyword">this</span>.setState(&#123;</span><br><span class="line">  list: [...this.state.list, <span class="keyword">this</span>.state.inputValue],</span><br><span class="line">    inputValue: <span class="string">''</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleItemDelete(index) &#123;</span><br><span class="line">  <span class="comment">// immutable</span></span><br><span class="line">  <span class="comment">// state 不允许我们做任何改变</span></span><br><span class="line">  <span class="keyword">const</span> list = [...this.state.list]; <span class="comment">// 拷贝list</span></span><br><span class="line">  list.splice(index, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    list: list</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JSX语法细节补充"><a href="#JSX语法细节补充" class="headerlink" title="JSX语法细节补充"></a>JSX语法细节补充</h2><h3 id="JSX写注释"><a href="#JSX写注释" class="headerlink" title="JSX写注释"></a>JSX写注释</h3><p>花括号里面是js代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &#123;/* 多行注释 */&#125;</span><br><span class="line">  &#123;</span><br><span class="line">    // 单行注释，必须换行</span><br><span class="line">   &#125;</span><br><span class="line">  &lt;input</span><br><span class="line">    value=&#123;this.state.inputValue&#125;</span><br><span class="line">    onChange=&#123;this.handleInputChange.bind(this)&#125;</span><br><span class="line">  /&gt;</span><br><span class="line">  &lt;button onClick=&#123;this.handleBtnClick.bind(this)&#125;&gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="用className替代class，避免与ES6-class关键字冲突"><a href="#用className替代class，避免与ES6-class关键字冲突" class="headerlink" title="用className替代class，避免与ES6 class关键字冲突"></a>用className替代class，避免与ES6 class关键字冲突</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &apos;./style.css&apos;</span><br><span class="line"></span><br><span class="line">&lt;input</span><br><span class="line">  className=&apos;input&apos;</span><br><span class="line">  value=&#123;this.state.inputValue&#125;</span><br><span class="line">  onChange=&#123;this.handleInputChange.bind(this)&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="dangerouslySetInnerHTML的使用"><a href="#dangerouslySetInnerHTML的使用" class="headerlink" title="dangerouslySetInnerHTML的使用"></a>dangerouslySetInnerHTML的使用</h3><p>为了防止XSS攻击，在react中，通过富文本编辑器进行操作后的内容，会保留原有的标签样式，并不能正确展示。</p>
+<p>在显示时，将内容写入__html对象中即可。具体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div dangerouslySetInnerHTML = &#123;&#123; __html: checkMessages.details &#125;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<p>如果是直接调用接口中的值，则是以上的写法，如果是单纯的显示固定的内容，用如下的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div dangerouslySetInnerHTML=&#123;&#123; __html: &apos;&lt;div&gt;123&lt;/div&gt;&apos; &#125;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="用htmlFor代替label标签的for"><a href="#用htmlFor代替label标签的for" class="headerlink" title="用htmlFor代替label标签的for"></a>用htmlFor代替label标签的for</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;label htmlFor=&quot;inserArea&quot;&gt;输入内容&lt;/label&gt;</span><br><span class="line">  &lt;input</span><br><span class="line">    id=&apos;inserArea&apos;</span><br><span class="line">  /&gt;</span><br><span class="line">  &lt;button onClick=&#123;this.handleBtnClick.bind(this)&#125;&gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="组件间通过props传值"><a href="#组件间通过props传值" class="headerlink" title="组件间通过props传值"></a>组件间通过props传值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// Todolist.js</span><br><span class="line">return (</span><br><span class="line">  &lt;div key=&#123;index&#125;&gt;</span><br><span class="line">    &lt;ToDoItem</span><br><span class="line">      content=&#123;item&#125;</span><br><span class="line">      index=&#123;index&#125;</span><br><span class="line">      deleteItem=&#123;this.handleItemDelete&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// TodoItem.js</span><br><span class="line">render() &#123;</span><br><span class="line">  const &#123; content &#125; = this.props;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div onClick=&#123;this.handleClick&#125;&gt;</span><br><span class="line">      &#123;content&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleClick() &#123;</span><br><span class="line">  const &#123; deleteItem, index &#125; = this.props;</span><br><span class="line">  deleteItem(index);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/02/19/React入门——TodoList（二）/" class="pre-post btn btn-default" title="React入门——TodoList（二）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">React入门——TodoList（二）</span>
+        </a>
+    
+    
+        <a href="/2019/02/18/React学习——TodoList/" class="next-post btn btn-default" title="React学习——TodoList">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">React学习——TodoList</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工程初始化"><span class="toc-text">工程初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工程目录文件简介"><span class="toc-text">工程目录文件简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react中的组件"><span class="toc-text">react中的组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现todoLIst的增加删除功能"><span class="toc-text">实现todoLIst的增加删除功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX语法细节补充"><span class="toc-text">JSX语法细节补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSX写注释"><span class="toc-text">JSX写注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用className替代class，避免与ES6-class关键字冲突"><span class="toc-text">用className替代class，避免与ES6 class关键字冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dangerouslySetInnerHTML的使用"><span class="toc-text">dangerouslySetInnerHTML的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用htmlFor代替label标签的for"><span class="toc-text">用htmlFor代替label标签的for</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件间通过props传值"><span class="toc-text">组件间通过props传值</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

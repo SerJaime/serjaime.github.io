@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="SerJaime">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://serjaime.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="react">
+
+
+    <meta name="description" content="引入ReduxRedux = Reducer + Flux
+工作流程
+StoreStore 就是保存数据的地方，你可以把它看成一个容器。整个应用只能有一个 Store。
+Redux 提供 cre...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>React入门——TodoList（三） | SerJaime</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="SerJaime" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="SerJaime">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://serjaime.github.io">SerJaime</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archive</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="React入门——TodoList（三）">
+            
+	            React入门——TodoList（三）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/react学习笔记/">react学习笔记</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/react/">react</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/02/19</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="引入Redux"><a href="#引入Redux" class="headerlink" title="引入Redux"></a>引入Redux</h2><p>Redux = Reducer + Flux</p>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p><img src="http://upload-images.jianshu.io/upload_images/11156200-c65733961fcc46af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Redux工作流程"></p>
+<h3 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h3><p>Store 就是保存数据的地方，你可以把它看成一个容器。整个应用只能有一个 Store。</p>
+<p>Redux 提供 createStore 这个函数，用来生成 Store。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from &apos;redux&apos;;</span><br><span class="line">const store = createStore(reducer);</span><br></pre></td></tr></table></figure></p>
+<h3 id="State"><a href="#State" class="headerlink" title="State"></a>State</h3><p>Store对象包含所有数据。如果想得到某个时点的数据，就要对 Store 生成快照。这种时点的数据集合，就叫做 State。</p>
+<p>当前时刻的 State，可以通过 store.getState() 拿到。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from &apos;redux&apos;;</span><br><span class="line">const store = createStore(reducer);</span><br><span class="line"></span><br><span class="line">const state = store.getState();</span><br></pre></td></tr></table></figure></p>
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><p>Action 是一个对象。其中的type属性是必须的，表示 Action 的名称。其他属性可以自由设置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;type: ”ADD”, key1: ”“,key2: ”“&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Action-Creator"><a href="#Action-Creator" class="headerlink" title="Action Creator"></a>Action Creator</h3><p>View 要发送多少种消息，就会有多少种 Action。如果都手写，会很麻烦。可以定义一个函数来生成 Action，这个函数就叫 Action Creator。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const ADD_TODO = &apos;添加 TODO&apos;;</span><br><span class="line"></span><br><span class="line">function addTodo(text) &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    type: ADD_TODO,</span><br><span class="line">    text</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const action = addTodo(&apos;Learn Redux&apos;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h3><p>Store 收到 Action 以后，必须给出一个新的 State，这样 View 才会发生变化。这种 State 的计算过程就叫做 Reducer。</p>
+<p>Reducer 是一个函数，它接受 Action 和当前 State 作为参数，返回一个新的 State。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const reducer = function (state, action) &#123;</span><br><span class="line">  // ...</span><br><span class="line">  return new_state;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>每当store.dispatch发送过来一个新的 Action，就会自动调用 Reducer，得到新的 State。</p>
+<p>为什么这个函数叫做 Reducer 呢？因为它可以作为数组的 reduce 方法的参数。请看下面的例子，一系列 Action 对象按照顺序作为一个数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const actions = [</span><br><span class="line">  &#123; type: &apos;ADD&apos;, payload: 0 &#125;,</span><br><span class="line">  &#123; type: &apos;ADD&apos;, payload: 1 &#125;,</span><br><span class="line">  &#123; type: &apos;ADD&apos;, payload: 2 &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">const total = actions.reduce(reducer, 0); // 3</span><br></pre></td></tr></table></figure></p>
+<h3 id="三个基本原则"><a href="#三个基本原则" class="headerlink" title="三个基本原则"></a>三个基本原则</h3><ol>
+<li>store必须是唯一的</li>
+<li>只有store能够改变自己的内容</li>
+<li>Reducer必须是纯函数</li>
+</ol>
+<p>纯函数指的是，给固定的输入，就一定会有固定的输出。而且不会有任何副作用</p>
+<h3 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h3><p>1.调用 store.dispatch(action)</p>
+<p>2.Redux store 调用传入的 reducer 函数。</p>
+<p>3.根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树</p>
+<p>4.Redux store 保存了根 reducer 返回的完整 state 树。</p>
+<h3 id="Redux核心API"><a href="#Redux核心API" class="headerlink" title="Redux核心API"></a>Redux核心API</h3><ul>
+<li>createStore</li>
+<li>store.dispatch</li>
+<li>store.getState</li>
+<li>store.subscribe</li>
+</ul>
+<h3 id="redux-thunk中间件"><a href="#redux-thunk中间件" class="headerlink" title="redux-thunk中间件"></a>redux-thunk中间件</h3><p>让 store.dispatch 方法可接收函数<br>步骤：</p>
+<ol>
+<li>yarn add redux-thunk 安装</li>
+<li>与 REDUX_DEVTOOLS 一起使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore, applyMiddleware, compose &#125; from &apos;redux&apos;;</span><br><span class="line">import reducer from &apos;./reducer&apos;;</span><br><span class="line">import thunk from &apos;redux-thunk&apos;;</span><br><span class="line"></span><br><span class="line">const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(&#123;&#125;) : compose;</span><br><span class="line"></span><br><span class="line">const enhancer = composeEnhancers(</span><br><span class="line">  applyMiddleware(thunk),</span><br><span class="line">);</span><br><span class="line">const store = createStore(reducer, enhancer);</span><br><span class="line"></span><br><span class="line">export default store</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.把异步操作移到 actionCreator<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export const getTodoList = () =&gt; &#123;</span><br><span class="line">  return (dispatch) =&gt; &#123;</span><br><span class="line">    axios.get(&apos;/list.json&apos;).then((res) =&gt; &#123;</span><br><span class="line">      const data = res.data;</span><br><span class="line">      const action = initListAction(data);</span><br><span class="line">      dispatch(action);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.在组件中提交 action<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">    const action = getTodoList();</span><br><span class="line">    store.dispatch(action);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>action 跟 reducer 的中间，对 dispatch 方法的包装升级<br>applyMiddleware源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">export default function applyMiddleware(...middlewares) &#123;</span><br><span class="line">  return (createStore) =&gt; (reducer, preloadedState, enhancer) =&gt; &#123;</span><br><span class="line">    var store = createStore(reducer, preloadedState, enhancer);</span><br><span class="line">    var dispatch = store.dispatch;</span><br><span class="line">    var chain = [];</span><br><span class="line"></span><br><span class="line">    var middlewareAPI = &#123;</span><br><span class="line">      getState: store.getState,</span><br><span class="line">      dispatch: (action) =&gt; dispatch(action)</span><br><span class="line">    &#125;;</span><br><span class="line">    chain = middlewares.map(middleware =&gt; middleware(middlewareAPI));</span><br><span class="line">    dispatch = compose(...chain)(store.dispatch);</span><br><span class="line"></span><br><span class="line">    return &#123;...store, dispatch&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="React-redux的使用"><a href="#React-redux的使用" class="headerlink" title="React-redux的使用"></a>React-redux的使用</h2><p>Provider组件<br>connect 连接组件和store<br>mapStateToProps 组件和store的映射<br>mapDispatchToProps store.dispatch挂载到props</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/02/19/React入门——TodoList（二）/" class="next-post btn btn-default" title="React入门——TodoList（二）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">React入门——TodoList（二）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入Redux"><span class="toc-text">引入Redux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工作流程"><span class="toc-text">工作流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Store"><span class="toc-text">Store</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State"><span class="toc-text">State</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action"><span class="toc-text">Action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action-Creator"><span class="toc-text">Action Creator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reducer"><span class="toc-text">Reducer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三个基本原则"><span class="toc-text">三个基本原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据流"><span class="toc-text">数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redux核心API"><span class="toc-text">Redux核心API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-thunk中间件"><span class="toc-text">redux-thunk中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中间件"><span class="toc-text">中间件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-redux的使用"><span class="toc-text">React-redux的使用</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

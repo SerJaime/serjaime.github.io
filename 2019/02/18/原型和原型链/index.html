@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="SerJaime">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://serjaime.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="javascript">
+
+
+    <meta name="description" content="参考链接JavaScript 原型精髓 #一篇就够系列深度解析原型中的各个难点深入理解javascript原型和闭包系JavaScript深入之从原型到原型链
+原型
+如何理解原型？如何理解原型链...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>原型和原型链 | SerJaime</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="SerJaime" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="SerJaime">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://serjaime.github.io">SerJaime</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archive</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="原型和原型链">
+            
+	            原型和原型链
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/javascript学习笔记/">javascript学习笔记</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/javascript/">javascript</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/02/18</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://juejin.im/post/5bcdb6c6f265da0afd4b75c0" target="_blank" rel="noopener">JavaScript 原型精髓 #一篇就够系列</a><br><a href="https://github.com/KieSun/Blog/issues/2" target="_blank" rel="noopener">深度解析原型中的各个难点</a><br><a href="https://www.cnblogs.com/wangfupeng1988/p/4001284.html" target="_blank" rel="noopener">深入理解javascript原型和闭包系</a><br><a href="https://github.com/mqyqingfeng/Blog/blob/master/articles/%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/JavaScript%E6%B7%B1%E5%85%A5%E4%B9%8B%E4%BB%8E%E5%8E%9F%E5%9E%8B%E5%88%B0%E5%8E%9F%E5%9E%8B%E9%93%BE.md" target="_blank" rel="noopener">JavaScript深入之从原型到原型链</a></p>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><blockquote>
+<p>如何理解原型？如何理解原型链？</p>
+</blockquote>
+<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0b0kzo8haj30dk0ge42c.jpg" alt="3ee04ff512a68800c014b66de0f6b3f2.png"></p>
+<h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h3><p>这是一个显式原型属性，<strong>只有函数才拥有该属性</strong>。基本上所有函数都有这个属性，但是也有一个例外</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fun = <span class="built_in">Function</span>.prototype.bind()</span><br></pre></td></tr></table></figure>
+<p><strong>prototype 如何产生的</strong></p>
+<p>当我们声明一个函数时，这个属性就被自动创建了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>并且这个属性的值是一个对象（也就是原型），只有一个属性 constructor</p>
+<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0b0mmcd3tj308g02et8o.jpg" alt="b59c1a6a164ce7855db2c734edb36d64.png"></p>
+<p>constructor 对应着构造函数，也就是 Foo。</p>
+<h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>constructor 是一个公有且不可枚举的属性。一旦我们改变了函数的 prototype ，那么新对象就没有这个属性了（当然可以通过原型链取到 constructor）。</p>
+<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0b0n3v342j30b805lmxj.jpg" alt="0828e3d4f0d820ab802b23e2573c7c41.png"></p>
+<p>打开 constructor 属性我们又可以发现其中还有一个 prototype 属性， 原型的 constructor 属性指向构造函数，构造函数又通过 prototype 属性指回原型</p>
+<p>这个属性到底有什么用呢？其实这个属性可以说是一个历史遗留问题，在大部分情况下是没用的，在我的理解里，我认为他有两个作用：</p>
+<ul>
+<li>让实例对象知道是什么函数构造了它</li>
+<li>如果想给某些类库中的构造函数增加一些自定义的方法，就可以通过 xx.constructor.method 来扩展</li>
+</ul>
+<h3 id="proto"><a href="#proto" class="headerlink" title="_proto_"></a>_proto_</h3><p>这是<strong>每个对象都有的隐式原型属性</strong>，指向了创建该对象的构造函数的原型。其实这个属性指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能访问到，所以使用 _proto_ 来访问。</p>
+<p>因为在 JS 中是没有类的概念的，为了实现类似继承的方式，通过 _proto_ 将对象和原型联系起来组成<strong>原型链</strong>，得以让对象可以访问到不属于自己的属性。</p>
+<p>实例对象的 _proto_ 如何产生的</p>
+<p>从上图可知，当我们使用 new 操作符时，生成的实例对象拥有了 _proto_属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 这个函数是 Function 的实例对象</span></span><br><span class="line"><span class="comment">// function 就是一个语法糖</span></span><br><span class="line"><span class="comment">// 内部调用了 new Function(...)</span></span><br></pre></td></tr></table></figure>
+<p>所以可以说，在 new 的过程中，新对象被添加了 _proto_ 并且链接到构造函数的原型上。</p>
+<h3 id="Function-proto-Function-prototype"><a href="#Function-proto-Function-prototype" class="headerlink" title="Function.proto === Function.prototype"></a>Function.proto === Function.prototype</h3><p>对于对象来说，xx._proto_.contrcutor 是该对象的构造函数，但是在图中我们可以发现 Function._proto_ === Function.prototype，难道这代表着 Function 自己产生了自己?</p>
+<p>答案肯定是否认的，要说明这个问题我们先从 Object 说起。</p>
+<p>从图中我们可以发现，所有对象都可以通过原型链最终找到 Object.prototype ，虽然 Object.prototype 也是一个对象，但是这个对象却不是 Object 创造的，而是引擎自己创建了 Object.prototype 。<strong>所以可以这样说，所有实例都是对象，但是对象不一定都是实例</strong>。</p>
+<p>接下来我们来看 Function.prototype 这个特殊的对象，如果你在浏览器将这个对象打印出来，会发现这个对象其实是一个函数。</p>
+<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0b0nj2xvlj30do037glr.jpg" alt="7016b33f0e23d65cfeb33cff76ad7f7a.png"></p>
+<p>我们知道函数都是通过 new Function() 生成的，难道 Function.prototype 也是通过 new Function() 产生的吗？答案也是否定的，这个函数也是引擎自己创建的。首先引擎创建了 Object.prototype ，然后创建了 Function.prototype ，并且通过 <strong>proto</strong> 将两者联系了起来。这里也很好的解释了上面的一个问题，为什么 let fun = Function.prototype.bind() 没有 prototype 属性。因为 Function.prototype 是引擎创建出来的对象，引擎认为不需要给这个对象添加 prototype 属性。</p>
+<p><strong>所以我们又可以得出一个结论，不是所有函数都是 new Function() 产生的。</strong></p>
+<p>有了 Function.prototype 以后才有了 function Function() ，然后其他的构造函数都是 function Function() 生成的。</p>
+<p>现在可以来解释 Function._proto_ === Function.prototype 这个问题了。因为先有的 Function.prototype 以后才有的 function Function() ，所以也就不存在鸡生蛋蛋生鸡的悖论问题了。对于为什么 Function._proto_ 会等于 Function.prototype ，个人的理解是：其他所有的构造函数都可以通过原型链找到 Function.prototype ，并且 function Function() 本质也是一个函数，为了不产生混乱就将 function Function() 的 _proto_ 联系到了 Function.prototype 上。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>Object 是所有对象的爸爸，所有对象都可以通过 __proto__ 找到它</li>
+<li>Function 是所有函数的爸爸，所有函数都可以通过 __proto__ 找到它</li>
+<li>函数的 prototype 是一个对象，也就是原型</li>
+<li>对象的 __proto__ 指向原型， __proto__ 将对象和原型连接起来组成了原型链</li>
+<li>Function.prototype 和 Object.prototype 是两个特殊的对象，他们由引擎来创建</li>
+<li>除了以上两个特殊对象，其他对象都是通过构造器 new 出来的</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/02/18/React学习——TodoList/" class="pre-post btn btn-default" title="React学习——TodoList">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">React学习——TodoList</span>
+        </a>
+    
+    
+        <a href="/2019/02/18/css布局解决方案/" class="next-post btn btn-default" title="css布局解决方案">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">css布局解决方案</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型"><span class="toc-text">原型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#prototype"><span class="toc-text">prototype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor-NaN"><span class="toc-text">constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proto"><span class="toc-text">_proto_</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-proto-Function-prototype"><span class="toc-text">Function.proto === Function.prototype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="SerJaime">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://serjaime.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="WebAR">
+
+
+    <meta name="description" content="在web上实现AR，即将视频和摄像头结合在一起，以达到增强现实的效果，这有点像视频中的“绿屏效果”。要在网页上实现“绿屏效果”，主要涉及到两个技术点，一是用HTML5中的canvas技术处理视频...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>WebAR——浏览器实现摄像头与视频的结合 | SerJaime</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="SerJaime" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="SerJaime">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://serjaime.github.io">SerJaime</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archive</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="WebAR——浏览器实现摄像头与视频的结合">
+            
+	            WebAR——浏览器实现摄像头与视频的结合
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/随笔/">随笔</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/WebAR/">WebAR</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/02/18</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在web上实现AR，即将视频和摄像头结合在一起，以达到增强现实的效果，这有点像视频中的“绿屏效果”。要在网页上实现“绿屏效果”，主要涉及到两个技术点，一是用HTML5中的canvas技术处理视频，二是调取摄像头并将摄像头捕获的图像与处理后的视频叠加在一起。</p>
+<p>实现步骤：</p>
+<ol>
+<li>准备一个背景为绿色的视频（其它颜色也可以，只要与视频主体的颜色不一样），<br>为了最后比较好的效果，建议先在AE中用抠图插件keylight对视频进行预处理，把背景的绿幕颜色统一。之所以不直接在AE中将绿幕抠掉，是因为没有一种视频格式支持透明效果，导出后的背景是黑色的，所以只能在网页上用代码抠图。</li>
+<li>用canvas的drawImage()方法获取video的图像并将图像绘制在一个canvas画布上<br>再用getImageData()方法返回 ImageData 对象，该对象拷贝了画布指定矩形的像素数据，对于 ImageData 对象中的每个像素，都存在着四方面的信息，即 RGBA 值:<br>R - 红色（0-255）<br>G - 绿色（0-255）<br>B - 蓝色（0-255）<br>A - alpha 通道（0-255; 0 是透明的，255 是完全可见的）。<br>接下来对图像数据进行处理，把绿色的像素的透明度设为0，即把绿色像素抠掉。<br>最后把处理好的图像数据通过putImageData()方法放回另一个canvas画布，该画布的背景加了一张图片。<br>实现代码:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> computeFrame= <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        ctx1.drawImage(video, <span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line">        <span class="keyword">var</span> frame = ctx1.getImageData(<span class="number">0</span>, <span class="number">0</span>, width, width);</span><br><span class="line">        <span class="keyword">var</span> l = frame.data.length / <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; l; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> r = frame.data[i * <span class="number">4</span> + <span class="number">0</span>];</span><br><span class="line">            <span class="keyword">var</span> g = frame.data[i * <span class="number">4</span> + <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">var</span> b = frame.data[i * <span class="number">4</span> + <span class="number">2</span>];</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">20</span>&lt;=r &lt;= <span class="number">90</span> &amp;&amp; g &gt;= <span class="number">190</span> &amp;&amp; b &lt;= <span class="number">30</span>)</span><br><span class="line">                frame.data[i * <span class="number">4</span> + <span class="number">3</span>] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ctx2.putImageData(frame, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        ctx3.putImageData(frame, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>效果如下:<br><img src="https://upload-images.jianshu.io/upload_images/11156200-13d99474fb7ad1bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
+<p>如图视频绿幕已被抠掉且露出背景图，只要每1000/60毫秒执行一次以上过程，处理后的视频就能流畅地与原视频同步。</p>
+<ol start="3">
+<li>视频处理好了，接下来是调取摄像头。WebRTC是一个支持网页浏览器进行实时语音对话<br>或视频对话的技术，WebRTC在持续不断地发展，它其中最广为人知的一个函数就是getUserMedia()。有了它，你就可以访问设备的摄像头和麦克风，并且可以请求视频流，音频流或者两者同时请求。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;</span><br><span class="line"> <span class="built_in">window</span>.URL = <span class="built_in">window</span>.URL || <span class="built_in">window</span>.webkitURL;</span><br><span class="line">navigator.getUserMedia(&#123;<span class="attr">video</span>:<span class="literal">true</span>&#125;, onSuccess, onError); <span class="comment">//调用摄像头捕捉视频信息</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onSuccess</span>(<span class="params">stream</span>)</span>&#123;</span><br><span class="line">  video1.src = <span class="built_in">window</span>.URL.createObjectURL(stream);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onError</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   alert(<span class="string">"获取视频出错。"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>我们把摄像头的图像代替之前ctx2的背景图，这样就把现实图像跟视频叠加在一起，实现了webAR增强现实的效果。<br>效果如下:<br><img src="https://upload-images.jianshu.io/upload_images/11156200-626d6d66a9161f1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.png"></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/02/18/Node异步流程控制的发展/" class="pre-post btn btn-default" title="Node异步流程控制的发展">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Node异步流程控制的发展</span>
+        </a>
+    
+    
+        <a href="/2019/02/18/函数和闭包/" class="next-post btn btn-default" title="函数和闭包">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">函数和闭包</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
