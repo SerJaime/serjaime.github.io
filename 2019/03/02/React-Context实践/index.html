@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="SerJaime">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://serjaime.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="react">
+
+
+    <meta name="description" content="参考链接Context聊一聊我对 React Context 的理解以及应用react new context API的一次实践
+使用场景在 React 组件化开发过程中，每个组件会有一些公共属...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>React Context实践 | SerJaime</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="SerJaime" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="SerJaime">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://serjaime.github.io">SerJaime</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archive</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="React Context实践">
+            
+	            React Context实践
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/随笔/">随笔</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/react/">react</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/03/02</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://react.docschina.org/docs/context.html" target="_blank" rel="noopener">Context</a><br><a href="https://www.jianshu.com/p/eba2b76b290b" target="_blank" rel="noopener">聊一聊我对 React Context 的理解以及应用</a><br><a href="https://juejin.im/post/5a900daaf265da4e8a3202c6" target="_blank" rel="noopener">react new context API的一次实践</a></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>在 React 组件化开发过程中，每个组件会有一些公共属性，比如主题颜色、字体、资源路径等等，有几种方法可以传输这些数据：</p>
+<ul>
+<li>在组件树中通过逐层传递 <code>props</code> 或者 <code>state</code> 的方式来传递数据</li>
+<li>使用Context来<strong>实现跨层级的组件数据传递</strong></li>
+<li>使用 Redux 状态管理机进行数据管理</li>
+</ul>
+<p>第一种方法显然很不方便，而项目如果不太复杂也没必要使用 Redux，有些公用数据是固定写死的，不会在应用运行过程中改变状态，我们只需在组件中获取该数据，这时候可以考虑使用 Context 实现<strong>跨层级的组件通信</strong></p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>通过静态方法 <code>React.createContext()</code> 创建一个<code>Context</code> 对象，这个 <code>Context</code> 对象包含两个组件，<code>&lt;Provider /&gt;</code> 和 <code>&lt;Consumer /&gt;</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ThemeContext = React.createContext(&#123;</span><br><span class="line">  background: <span class="string">'red'</span>,</span><br><span class="line">  color: <span class="string">'white'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>父组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class App extends React.Component &#123; </span><br><span class="line">  render () &#123; </span><br><span class="line">    return ( </span><br><span class="line">      &lt;ThemeContext.Provider value=&#123;&#123;background: &apos;green&apos;, color: &apos;white&apos;&#125;&#125;&gt; </span><br><span class="line">        &lt;Header /&gt; </span><br><span class="line">      &lt;/ThemeContext.Provider&gt; ); </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>子组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Header extends React.Component &#123; </span><br><span class="line">  render () &#123; </span><br><span class="line">    return ( </span><br><span class="line">      &lt;Title&gt;Hello React Context API&lt;/Title&gt; </span><br><span class="line">    ); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">class Title extends React.Component &#123;</span><br><span class="line">  render () &#123; </span><br><span class="line">    return ( </span><br><span class="line">      &lt;ThemeContext.Consumer&gt; </span><br><span class="line">        &#123;context =&gt; ( </span><br><span class="line">          &lt;h1 style=&#123;&#123;background: context.background, color: context.color&#125;&#125;&gt; </span><br><span class="line">            &#123;this.props.children&#125; </span><br><span class="line">          &lt;/h1&gt;</span><br><span class="line">        )&#125; </span><br><span class="line">      &lt;/ThemeContext.Consumer&gt; </span><br><span class="line">    ); </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>&lt;Consumer /&gt;</code> 的 <code>children</code> 必须是一个函数，通过函数的参数获取  <code>&lt;Provider /&gt;</code> 提供的Context。</p>
+<h2 id="封装-Consumer"><a href="#封装-Consumer" class="headerlink" title="封装 Consumer"></a>封装 Consumer</h2><p><code>context/index.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import * as React from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export const context = &#123;</span><br><span class="line">    PIC_URL: &apos;http://127.0.0.1:8080/img&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default React.createContext(context);</span><br></pre></td></tr></table></figure></p>
+<p><code>App.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import Context, &#123; context &#125; from &quot;./context&quot;;</span><br><span class="line">class App extends Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;Context.Provider value=&#123;context&#125;&gt;</span><br><span class="line">            &lt;div&gt; &lt;/div&gt;</span><br><span class="line">        &lt;/Context.Provider&gt;</span><br><span class="line">    );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure></p>
+<p><code>context/consumer.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import Context from &quot;./index&quot;;</span><br><span class="line"></span><br><span class="line">export const Consumer = Component =&gt; &#123;</span><br><span class="line">    return props =&gt; (</span><br><span class="line">        &lt;Context.Consumer&gt;</span><br><span class="line">            &#123;context =&gt; (</span><br><span class="line">                &lt;Component context=&#123;context&#125; &#123;...props&#125; /&gt;</span><br><span class="line">            )&#125;</span><br><span class="line">        &lt;/Context.Consumer&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>banners.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123; Consumer &#125; from &apos;../../../../context/Consumer&apos;;</span><br><span class="line">import Swiper from &apos;swiper/dist/js/swiper.js&apos;;</span><br><span class="line">import &quot;swiper/dist/css/swiper.css&quot;;</span><br><span class="line">import styles from &apos;../../styles.styl&apos;;</span><br><span class="line"></span><br><span class="line">class Banner extends Component &#123;</span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        const &#123; banners &#125; = this.props;</span><br><span class="line">        const &#123; PIC_URL &#125; = this.props.context;</span><br><span class="line">        const bannerElements = banners.map((banner) =&gt; (</span><br><span class="line">            &lt;div className=&quot;swiper-slide&quot; key=&#123;banner.get(&apos;id&apos;)&#125;&gt;</span><br><span class="line">                &lt;a href=&#123;banner.get(&apos;url&apos;)&#125;&gt;</span><br><span class="line">                    &lt;div className=&#123;styles.imgWrapper&#125;&gt;</span><br><span class="line">                        &lt;h2&gt;&#123;banner.get(&apos;title&apos;)&#125;&lt;/h2&gt;</span><br><span class="line">                        &lt;img src=&#123;`$&#123;PIC_URL&#125;?url=$&#123;banner.get(&apos;image&apos;)&#125;`&#125; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/a&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        ));</span><br><span class="line">        return (</span><br><span class="line">            . . .</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Consumer(Banner);</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/02/28/React中使用Swiper插件/" class="next-post btn btn-default" title="React中使用Swiper插件">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">React中使用Swiper插件</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用场景"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本用法"><span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#封装-Consumer"><span class="toc-text">封装 Consumer</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
