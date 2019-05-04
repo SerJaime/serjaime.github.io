@@ -172,17 +172,17 @@
 <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><blockquote>
 <p>如何理解原型？如何理解原型链？</p>
 </blockquote>
-<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0b0kzo8haj30dk0ge42c.jpg" alt="3ee04ff512a68800c014b66de0f6b3f2.png"></p>
+<p><img src="http://cdn.serjaime.xin/blog/0072Lfvtly1g0b0kzo8haj30dk0ge42c.jpg" alt="3ee04ff512a68800c014b66de0f6b3f2.png"></p>
 <h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h3><p>这是一个显式原型属性，<strong>只有函数才拥有该属性</strong>。基本上所有函数都有这个属性，但是也有一个例外</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fun = <span class="built_in">Function</span>.prototype.bind()</span><br></pre></td></tr></table></figure>
 <p><strong>prototype 如何产生的</strong></p>
 <p>当我们声明一个函数时，这个属性就被自动创建了。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>并且这个属性的值是一个对象（也就是原型），只有一个属性 constructor</p>
-<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0b0mmcd3tj308g02et8o.jpg" alt="b59c1a6a164ce7855db2c734edb36d64.png"></p>
+<p><img src="http://cdn.serjaime.xin/blog/0072Lfvtly1g0b0mmcd3tj308g02et8o.jpg" alt="b59c1a6a164ce7855db2c734edb36d64.png"></p>
 <p>constructor 对应着构造函数，也就是 Foo。</p>
 <h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>constructor 是一个公有且不可枚举的属性。一旦我们改变了函数的 prototype ，那么新对象就没有这个属性了（当然可以通过原型链取到 constructor）。</p>
-<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0b0n3v342j30b805lmxj.jpg" alt="0828e3d4f0d820ab802b23e2573c7c41.png"></p>
+<p><img src="http://cdn.serjaime.xin/blog/0072Lfvtly1g0b0n3v342j30b805lmxj.jpg" alt="0828e3d4f0d820ab802b23e2573c7c41.png"></p>
 <p>打开 constructor 属性我们又可以发现其中还有一个 prototype 属性， 原型的 constructor 属性指向构造函数，构造函数又通过 prototype 属性指回原型</p>
 <p>这个属性到底有什么用呢？其实这个属性可以说是一个历史遗留问题，在大部分情况下是没用的，在我的理解里，我认为他有两个作用：</p>
 <ul>
@@ -199,7 +199,7 @@
 <p>答案肯定是否认的，要说明这个问题我们先从 Object 说起。</p>
 <p>从图中我们可以发现，所有对象都可以通过原型链最终找到 Object.prototype ，虽然 Object.prototype 也是一个对象，但是这个对象却不是 Object 创造的，而是引擎自己创建了 Object.prototype 。<strong>所以可以这样说，所有实例都是对象，但是对象不一定都是实例</strong>。</p>
 <p>接下来我们来看 Function.prototype 这个特殊的对象，如果你在浏览器将这个对象打印出来，会发现这个对象其实是一个函数。</p>
-<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0b0nj2xvlj30do037glr.jpg" alt="7016b33f0e23d65cfeb33cff76ad7f7a.png"></p>
+<p><img src="http://cdn.serjaime.xin/blog/0072Lfvtly1g0b0nj2xvlj30do037glr.jpg" alt="7016b33f0e23d65cfeb33cff76ad7f7a.png"></p>
 <p>我们知道函数都是通过 new Function() 生成的，难道 Function.prototype 也是通过 new Function() 产生的吗？答案也是否定的，这个函数也是引擎自己创建的。首先引擎创建了 Object.prototype ，然后创建了 Function.prototype ，并且通过 <strong>proto</strong> 将两者联系了起来。这里也很好的解释了上面的一个问题，为什么 let fun = Function.prototype.bind() 没有 prototype 属性。因为 Function.prototype 是引擎创建出来的对象，引擎认为不需要给这个对象添加 prototype 属性。</p>
 <p><strong>所以我们又可以得出一个结论，不是所有函数都是 new Function() 产生的。</strong></p>
 <p>有了 Function.prototype 以后才有了 function Function() ，然后其他的构造函数都是 function Function() 生成的。</p>

@@ -175,7 +175,7 @@
 </ul>
 <h3 id="项目-eject"><a href="#项目-eject" class="headerlink" title="项目 eject"></a>项目 eject</h3><p>执行 <code>yarn eject</code> 可以把 webpack 的默认配置暴露出来，</p>
 <p>执行 <code>yarn eject</code>  的时候有可能会报错：</p>
-<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0duvvb1obj30kg06gglx.jpg" alt="83b66d77569dfa26d146c937cd40b93a.png"></p>
+<p><img src="http://cdn.serjaime.xin/blog/0072Lfvtly1g0duvvb1obj30kg06gglx.jpg" alt="83b66d77569dfa26d146c937cd40b93a.png"></p>
 <p>原因是 git 没有提交修改，执行<br><code>git add .</code><br><code>git commit -m &quot;&quot;</code><br>再重新 <code>yarn eject</code> 可以正常运行</p>
 <p>eject 后项目根目录下会出现 config 文件夹，里面就包含了 webpack 配置config<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">├── env.js</span><br><span class="line">├── jest</span><br><span class="line">│   ├── cssTransform.js</span><br><span class="line">│   └── fileTransform.js</span><br><span class="line">├── paths.js</span><br><span class="line">├── polyfills.js</span><br><span class="line">├── webpack.config.dev.js // 开发环境配置</span><br><span class="line">├── webpack.config.prod.js // 生产环境配置</span><br><span class="line">└── webpackDevServer.config.js</span><br></pre></td></tr></table></figure></p>
 <p>我们可以根据需要任意配置，这个过程不可逆。</p>

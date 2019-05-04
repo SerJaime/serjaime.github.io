@@ -208,7 +208,7 @@
 <li>到函数内部修改参数的属性这步，我相信大家都知道，当前 p1 的值也被修改了</li>
 <li>但是当我们重新为了 person 分配了一个对象时就出现了分歧，请看下图</li>
 </ul>
-<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0ay047661j30i70bft9d.jpg" alt="ef95196512985e80d3eaff87b1f36e46.png"></p>
+<p><img src="http://cdn.serjaime.xin/blog/0072Lfvtly1g0ay047661j30i70bft9d.jpg" alt="ef95196512985e80d3eaff87b1f36e46.png"></p>
 <p>所以最后 person 拥有了一个新的地址（指针），也就和 p1 没有任何关系了，导致了最终两个变量的值是不相同的。</p>
 <h2 id="Typeof"><a href="#Typeof" class="headerlink" title="Typeof"></a>Typeof</h2><blockquote>
 <p>typeof 是否能正确判断类型？instanceof 能正确判断对象的原理是什么？</p>
@@ -247,7 +247,7 @@
 <li>转换为数字</li>
 <li>转换为字符串</li>
 </ul>
-<p><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1g0ayej9ottj30p70i0wh2.jpg" alt="0f1ea5870705aaea801a4b0a0674eb71.png"></p>
+<p><img src="http://cdn.serjaime.xin/blog/0072Lfvtly1g0ayej9ottj30p70i0wh2.jpg" alt="0f1ea5870705aaea801a4b0a0674eb71.png"></p>
 <h3 id="转Boolean"><a href="#转Boolean" class="headerlink" title="转Boolean"></a>转Boolean</h3><p>在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象。</p>
 <h3 id="对象转原始类型"><a href="#对象转原始类型" class="headerlink" title="对象转原始类型"></a>对象转原始类型</h3><p>对象在转换类型的时候，会调用内置的 [[ToPrimitive]] 函数，对于该函数来说，算法逻辑一般来说如下：</p>
 <ul>
