@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="SerJaime">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://serjaime.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="react">
+
+
+    <meta name="description" content="参考链接React router 中文文档React Router 中文文档（一）React-router4简约教程React-router v4教程react-router v4 之 啥是
+R...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>React Router | SerJaime</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="SerJaime" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="SerJaime">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://serjaime.github.io">SerJaime</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archive</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="React Router">
+            
+	            React Router
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/react学习笔记/">react学习笔记</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/react/">react</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/04</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://react-guide.github.io/react-router-cn/docs/guides/basics/RouteConfiguration.html" target="_blank" rel="noopener">React router 中文文档</a><br><a href="https://segmentfault.com/a/1190000014294604#articleHeader7" target="_blank" rel="noopener">React Router 中文文档（一）</a><br><a href="http://react-china.org/t/react-router4/15843" target="_blank" rel="noopener">React-router4简约教程</a><br><a href="https://www.jianshu.com/p/548674270455" target="_blank" rel="noopener">React-router v4教程</a><br><a href="https://www.jianshu.com/p/ed5e56994f13?from=timeline" target="_blank" rel="noopener">react-router v4 之 啥是<switch></switch></a></p>
+<h2 id="React-router-vs-react-router-dom-vs-react-router-native"><a href="#React-router-vs-react-router-dom-vs-react-router-native" class="headerlink" title="React-router vs react-router-dom vs react-router-native"></a>React-router vs react-router-dom vs react-router-native</h2><ul>
+<li>react-router是浏览器和原生应用的通用部分。</li>
+<li>react-router-dom是用于浏览器的。</li>
+<li>react-router-native是用于原生应用的。</li>
+</ul>
+<p>react-router是核心部分。react-router-dom提供了浏览器使用需要的定制组件。react-router-native则专门提供了在原生移动应用中需要用到的部分。所以，<strong>在现代浏览器使用就只需要安装react-router-dom。</strong></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br></pre></td></tr></table></figure>
+<h2 id="BrowserRouter-vs-HashRouter"><a href="#BrowserRouter-vs-HashRouter" class="headerlink" title="BrowserRouter vs HashRouter"></a>BrowserRouter vs HashRouter</h2><h3 id="HashRouter"><a href="#HashRouter" class="headerlink" title="HashRouter"></a>HashRouter</h3><p>Hash history 使用 URL 中的 hash（#）部分去创建形如 example.com/#/some/path 的路由。</p>
+<h3 id="BrowserRouter-推荐使用"><a href="#BrowserRouter-推荐使用" class="headerlink" title="BrowserRouter(推荐使用)"></a>BrowserRouter(推荐使用)</h3><p><code>&lt;BrowserRouter&gt;</code> 使用 HTML5 提供的 history API (pushState, replaceState 和 popstate 事件) 来保持 UI 和 URL 的同步。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; BrowserRouter &#125; from &apos;react-router-dom&apos;;</span><br><span class="line"></span><br><span class="line">&lt;BrowserRouter</span><br><span class="line">  basename=&#123;string&#125;</span><br><span class="line">  forceRefresh=&#123;bool&#125;</span><br><span class="line">  getUserConfirmation=&#123;func&#125;</span><br><span class="line">  keyLength=&#123;number&#125;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;App /&gt;&lt;/BrowserRouter&gt;</span><br></pre></td></tr></table></figure>
+<p>basename</p>
+<p>所有位置的基准 URL。如果你的应用程序部署在服务器的子目录，则需要将其设置为子目录。basename 的正确格式是前面有一个前导斜杠，但不能有尾部斜杠。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;BrowserRouter basename=&quot;/calendar&quot;&gt;</span><br><span class="line">  &lt;Link to=&quot;/today&quot; /&gt;</span><br><span class="line">&lt;/BrowserRouter&gt;</span><br></pre></td></tr></table></figure>
+<p>上例中的 <link> 最终将被呈现为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;/calendar/today&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>需要配置服务器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)<span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)<span class="keyword">const</span> port = process.env.PORT || <span class="number">8080</span><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通常用于加载静态资源</span></span><br><span class="line">app.use(express.static(__dirname + <span class="string">'/public'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在你应用 JavaScript 文件中包含了一个 script 标签// 的 index.html 中处理任何一个 route</span></span><br><span class="line">app.get(<span class="string">'*'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>)</span>&#123;</span><br><span class="line">  response.sendFile(path.resolve(__dirname, <span class="string">'public'</span>, <span class="string">'index.html'</span>))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"server started on port "</span> + port)</span><br></pre></td></tr></table></figure>
+<h2 id="Route"><a href="#Route" class="headerlink" title="Route"></a>Route</h2><p>无论何时需要在匹配某个路径的时候绘制一个组件，那么就可以使用Route组件。</p>
+<p>Route组件可以使用如下的属性：</p>
+<ul>
+<li>path属性，字符串类型，它的值就是用来匹配url的。</li>
+<li>component属性，它的值是一个组件。在path匹配成功之后会绘制这个组件。</li>
+<li>exact属性，这个属性用来指明这个路由是不是排他的匹配。</li>
+<li>strict属性， 这个属性指明路径只匹配以斜线结尾的路径。</li>
+</ul>
+<p>还有其他的一些属性，可以用来代替component属性。</p>
+<ul>
+<li>render属性，一个返回React组件的方法。传说中的rencer-prop就是从这里来的。</li>
+<li>children属性，返回一个React组件的方法。只不过这个总是会绘制，即使没有匹配的路径的时候。</li>
+</ul>
+<p><strong>大多数情况下你会使用 component。</strong></p>
+<p>三种渲染方式都将提供相同的三个路由属性：</p>
+<ul>
+<li>match</li>
+<li>location</li>
+<li>history</li>
+</ul>
+<h2 id="URL-Path-Route的参数"><a href="#URL-Path-Route的参数" class="headerlink" title="URL / Path / Route的参数"></a>URL / Path / Route的参数</h2><p>指定只有当位置匹配时才会渲染的 React 组件，该组件会接收 route props 作为属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const User = (&#123; match &#125;) =&gt; &#123;</span><br><span class="line">  return &lt;h1&gt;Hello &#123;match.params.username&#125;!&lt;/h1&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;Route path=&quot;/user/:username&quot; component=&#123;User&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>当你使用 component（而不是 render 或 children）时</strong>，Router 将根据指定的组件，使用 React.createElement 创建一个新的 React 元素。这意味着，如果你向 component 提供一个内联函数，那么每次渲染都会创建一个新组件。这将导致<strong>现有组件的卸载和新组件的安装</strong>，而不是仅仅更新现有组件。当使用内联函数进行内联渲染时，请使用 render 或 children。</p>
+<p>match 中包含以下属性</p>
+<ul>
+<li>url: 匹配的url。</li>
+<li>path：就是path。</li>
+<li>isExact：如果path和当前的widnow.location的path部分完全相同的话。</li>
+<li>params：在URL里包含的参数。</li>
+</ul>
+<h2 id="和-exact"><a href="#和-exact" class="headerlink" title=" 和 exact"></a><switch> 和 exact</switch></h2><switch>
+
+<p>渲染第一个被location匹配到的并且作为子元素的<route>或者<redirect></redirect></route></p>
+<p>不使用<switch>：</switch></p>
+<p><img src="http://cdn.serjaime.xin/blog/Snap1.png" alt=""></p>
+<p>结果：</p>
+<p>“/“ -&gt; 页面一<br>“/second” -&gt; 页面一、页面二</p>
+<ul>
+<li>“/“只匹配到了path=”/“的<route>所以正常渲染了页面一。</route></li>
+<li>“/second”先匹配到了path=”/“的<route>，接着又匹配到了path=”/second/“的<route>，于是把页面一和页面二都渲染了出来。</route></route></li>
+</ul>
+<p>使用<switch>：</switch></p>
+<p><img src="http://cdn.serjaime.xin/blog/Snap2.png" alt=""></p>
+<p>结果：</p>
+<p>“/“ -&gt; 页面一<br>“/second” -&gt; 页面一</p>
+<ul>
+<li><switch>只找到第一个被location匹配到的<route>就立即停止继续匹配，并且把它渲染出来。”/second”同时和”/“，”/second/“相匹配，因为先匹配到了前者，所以只有页面一被渲染。</route></switch></li>
+</ul>
+<p>调整一下顺序：</p>
+<p><img src="http://cdn.serjaime.xin/blog/Snap3.png" alt=""></p>
+<p>结果：</p>
+<p>“/“ -&gt; 页面一<br>“/second” -&gt; 页面二</p>
+<p>把<switch>和exact属性结合起来使用：</switch></p>
+<p><img src="http://cdn.serjaime.xin/blog/Snap4.png" alt=""></p>
+<p>结果：</p>
+<p>“/“ -&gt; 页面一<br>“/second” -&gt; 页面二</p>
+<p>exact 保证只有访问根路径 “/“ 时，该 Route 才会匹配成功</p>
+<h2 id="Link-和-NavLink"><a href="#Link-和-NavLink" class="headerlink" title="Link 和 NavLink"></a>Link 和 NavLink</h2><p>Link组件需要用到to属性，这个属性的值就是react router要跳转到的地址。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Link &#125; from &apos;react-router-dom&apos;;</span><br><span class="line"></span><br><span class="line">const Nav = () =&gt; (</span><br><span class="line">  &lt;Link to &apos;/&apos;&gt;Home&lt;/Link&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>to属性的值可以是一个字符串，也可以是一个location（pathname, hash, state和search）对象。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Link to&#123;&#123;</span><br><span class="line">  pathname: &apos;/me&apos;,</span><br><span class="line">  search: &apos;?sort=asc&apos;,</span><br><span class="line">  hash: &apos;#hash&apos;,</span><br><span class="line">  state: &#123; fromHome: true &#125;</span><br><span class="line">&#125;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<p>NavLink是Link的一个子类，在Link组件的基础上增加了绘制组件的样式，比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">NavLink</span> <span class="attr">to</span>=<span class="string">"/me"</span> <span class="attr">activeStyle</span>=<span class="string">&#123;&#123;SomeStyle&#125;&#125;</span> <span class="attr">activeClassName</span>=<span class="string">"selected"</span>&gt;</span></span><br><span class="line">  My Profile</span><br><span class="line"><span class="tag">&lt;/<span class="name">NavLink</span>&gt;</span></span><br></pre></td></tr></table></figure></switch>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/04/11/LazyLoad-图片懒加载/" class="next-post btn btn-default" title="LazyLoad 图片懒加载">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">LazyLoad 图片懒加载</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-router-vs-react-router-dom-vs-react-router-native"><span class="toc-text">React-router vs react-router-dom vs react-router-native</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BrowserRouter-vs-HashRouter"><span class="toc-text">BrowserRouter vs HashRouter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HashRouter"><span class="toc-text">HashRouter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BrowserRouter-推荐使用"><span class="toc-text">BrowserRouter(推荐使用)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route"><span class="toc-text">Route</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL-Path-Route的参数"><span class="toc-text">URL / Path / Route的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#和-exact"><span class="toc-text"> 和 exact</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Link-和-NavLink"><span class="toc-text">Link 和 NavLink</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
