@@ -16,12 +16,11 @@
     <link rel="dns-prefetch" href="https://serjaime.github.io">
     <!--SEO-->
 
-    <meta name="keywords" content="hexo">
+    <meta name="keywords" content="javascript">
 
 
-    <meta name="description" content="Hexo 介绍一个快速、简洁且高效的博客框架，很多知名网站和博客都是使用该框架开发，awesome-hexo
-官网GitHub 地址
-安装与使用安装安装前，必须检查电脑中是否已安装下列应用程序：...">
+    <meta name="description" content="Bom是浏览器对象
+location对象location.href – 返回或设置当前文档的URLlocation.search – 返回URL中的查询字符串部分。例如 http://www.d...">
 
 
 
@@ -33,7 +32,7 @@
     <!--Title-->
 
 
-<title>使用hexo搭建个人博客 | SerJaime</title>
+<title>几个很实用的BOM属性对象方法 | SerJaime</title>
 
 
     <link rel="alternate" href="/atom.xml" title="SerJaime" type="application/atom+xml">
@@ -130,16 +129,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="使用hexo搭建个人博客">
+        <h1 id="几个很实用的BOM属性对象方法">
             
-	            使用hexo搭建个人博客
+	            几个很实用的BOM属性对象方法
             
         </h1>
         <div class="post-meta">
     
         <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/随笔/">随笔</a>
+            <a class="category-link" href="/categories/javascript学习笔记/">javascript学习笔记</a>
         </span>
     
 
@@ -148,7 +147,7 @@
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
                 
-                    <a class="tag-link" href="/tags/hexo/">hexo</a>
+                    <a class="tag-link" href="/tags/javascript/">javascript</a>
                 
             </span>
         </span>
@@ -158,7 +157,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/02/16</span>
+            <span class="date-meta">2019/03/24</span>
         </span>
         
     
@@ -168,27 +167,11 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="Hexo-介绍"><a href="#Hexo-介绍" class="headerlink" title="Hexo 介绍"></a>Hexo 介绍</h2><p>一个快速、简洁且高效的博客框架，很多知名网站和博客都是使用该框架开发，<a href="https://github.com/hexojs/awesome-hexo" target="_blank" rel="noopener">awesome-hexo</a></p>
-<p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">官网</a><br><a href="https://github.com/hexojs/hexo" target="_blank" rel="noopener">GitHub 地址</a></p>
-<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装前，必须检查电脑中是否已安装下列应用程序：</p>
-<ul>
-<li>Node.js</li>
-<li>Git</li>
-</ul>
-<p>之后输入以下命令全局安装：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><code>hexo init [folder]</code> 新建一个网站，从 <a href="https://github.com/hexojs/hexo-starter" target="_blank" rel="noopener">GitHub</a> 拉取所需要的文件，如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
-<p>安装依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p><code>hexo generate</code> 生成静态网站</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<p>监视文件变动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --watch</span><br></pre></td></tr></table></figure>
-<p><code>hexo server</code> 启动服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>完成后部署</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --deploy</span><br><span class="line">// 简写</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+        <p>Bom是浏览器对象</p>
+<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><p><strong>location.href</strong> – 返回或设置当前文档的URL<br><strong>location.search</strong> – 返回URL中的查询字符串部分。<br>例如 <a href="http://www.dreamdu.com/dreamdu.php?id=5&amp;name=dreamdu" target="_blank" rel="noopener">http://www.dreamdu.com/dreamdu.php?id=5&amp;name=dreamdu</a> 返回包括(?)后面的内容?id=5&amp;name=dreamdu<br><strong>location.hash</strong> – 返回URL#后面的内容，如果没有#，返回空<br><strong>location.host</strong> – 返回URL中的域名部分，例如<a href="http://www.dreamdu.com" target="_blank" rel="noopener">www.dreamdu.com</a><br><strong>location.hostname</strong> – 返回URL中的主域名部分，例如dreamdu.com<br><strong>location.pathname</strong> – 返回URL的域名后的部分。<br>例如 <a href="http://www.dreamdu.com/xhtml/" target="_blank" rel="noopener">http://www.dreamdu.com/xhtml/</a> 返回/xhtml/<br><strong>location.port</strong> – 返回URL中的端口部分。<br>例如 <a href="http://www.dreamdu.com:8080/xhtml/" target="_blank" rel="noopener">http://www.dreamdu.com:8080/xhtml/</a> 返回8080<br><strong>location.protocol</strong> – 返回URL中的协议部分。<br>例如 <a href="http://www.dreamdu.com:8080/xhtml/" target="_blank" rel="noopener">http://www.dreamdu.com:8080/xhtml/</a> 返回(//)前面的内容http:<br><strong>location.assign</strong> – 设置当前文档的URL<br><strong>location.replace()</strong> – 设置当前文档的URL，并且在history对象的地址列表中移除这个URL location.replace(url);<br><strong>location.reload()</strong> – 重载当前页面</p>
+<h2 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h2><p><strong>history.go()</strong> – 前进或后退指定的页面数 history.go(num);<br><strong>history.back()</strong> – 后退一页<br><strong>history.forward()</strong> – 前进一页</p>
+<h2 id="Navigator对象"><a href="#Navigator对象" class="headerlink" title="Navigator对象"></a>Navigator对象</h2><p><strong>navigator.userAgent</strong> – 返回用户代理头的字符串表示(就是包括浏览器版本信息等的字符串)<br><strong>navigator.cookieEnabled</strong> – 返回浏览器是否支持(启用)cookie</p>
+
     </div>
     
     <div class="post-footer">
@@ -203,11 +186,16 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/02/17/数据类型/" class="pre-post btn btn-default" title="数据类型">
+        <a href="/2019/04/11/LazyLoad-图片懒加载/" class="pre-post btn btn-default" title="LazyLoad 图片懒加载">
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">数据类型</span>
+            <span class="hidden-xs">LazyLoad 图片懒加载</span>
         </a>
     
+    
+        <a href="/2019/03/09/深浅拷贝/" class="next-post btn btn-default" title="深浅拷贝">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">深浅拷贝</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
     
 </div>
 
@@ -222,7 +210,7 @@
     <div class="widget">
         <h3 class="title">文章目录</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-介绍"><span class="toc-text">Hexo 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装与使用"><span class="toc-text">安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#location对象"><span class="toc-text">location对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#history对象"><span class="toc-text">history对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Navigator对象"><span class="toc-text">Navigator对象</span></a></li></ol>
         
     </div>
 </aside>

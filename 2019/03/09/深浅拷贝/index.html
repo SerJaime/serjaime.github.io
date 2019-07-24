@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="SerJaime">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://serjaime.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="javascript">
+
+
+    <meta name="description" content="[TOC]
+参考链接JavaScript专题之深浅拷贝
+深浅拷贝123456let a = &#123;  age: 1&#125;let b = aa.age = 2console.log(b...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>深浅拷贝 | SerJaime</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="SerJaime" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="SerJaime">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://serjaime.github.io">SerJaime</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archive</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="深浅拷贝">
+            
+	            深浅拷贝
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/javascript学习笔记/">javascript学习笔记</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/javascript/">javascript</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/03/09</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>[TOC]</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://github.com/mqyqingfeng/Blog/blob/master/articles/%E4%B8%93%E9%A2%98%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/JavaScript%E4%B8%93%E9%A2%98%E4%B9%8B%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D.md" target="_blank" rel="noopener">JavaScript专题之深浅拷贝</a></p>
+<h3 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  age: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line">a.age = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(b.age) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>从上述例子中我们可以发现，如果给一个变量赋值一个对象，那么两者的值会是同一个引用，其中一方改变，另一方也会相应改变。</p>
+<p>通常在开发中我们不希望出现这样的问题，我们可以使用浅拷贝来解决这个问题。</p>
+<h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><p>首先可以通过 <code>Object.assign</code> 来解决这个问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    age: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">Object</span>.assign(&#123;&#125;, a)</span><br><span class="line">a.age = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(b.age) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>当然我们也可以通过展开运算符（…）来解决</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    age: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = &#123;...a&#125;</span><br><span class="line">a.age = <span class="number">2</span></span><br><span class="line"><span class="built_in">console</span>.log(b.age) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>通常浅拷贝就能解决大部分问题了，但是当我们遇到如下情况就需要使用到深拷贝了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    age: <span class="number">1</span>,</span><br><span class="line">    jobs: &#123;</span><br><span class="line">        first: <span class="string">'FE'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = &#123;...a&#125;</span><br><span class="line">a.jobs.first = <span class="string">'native'</span></span><br><span class="line"><span class="built_in">console</span>.log(b.jobs.first) <span class="comment">// native</span></span><br></pre></td></tr></table></figure>
+<p>浅拷贝只解决了第一层的问题，如果接下去的值中还有对象的话，那么就又回到刚开始的话题了，两者享有相同的引用。要解决这个问题，我们需要引入深拷贝。</p>
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><p>这个问题通常可以通过 <code>JSON.parse(JSON.stringify(object))</code> 来解决。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    age: <span class="number">1</span>,</span><br><span class="line">    jobs: &#123;</span><br><span class="line">        first: <span class="string">'FE'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(a))</span><br><span class="line">a.jobs.first = <span class="string">'native'</span></span><br><span class="line"><span class="built_in">console</span>.log(b.jobs.first) <span class="comment">// FE</span></span><br></pre></td></tr></table></figure>
+<p>但是该方法也是有局限性的：</p>
+<ul>
+<li>会忽略 undefined</li>
+<li>会忽略 symbol</li>
+<li>不能序列化函数</li>
+<li>不能解决循环引用的对象</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: <span class="number">2</span>,</span><br><span class="line">    d: <span class="number">3</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.c = obj.b</span><br><span class="line">obj.e = obj.a</span><br><span class="line">obj.b.c = obj.c</span><br><span class="line">obj.b.d = obj.b</span><br><span class="line">obj.b.e = obj.b.c</span><br><span class="line"><span class="keyword">let</span> newObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj))</span><br><span class="line"><span class="built_in">console</span>.log(newObj)</span><br></pre></td></tr></table></figure>
+<p>如果你有这么一个循环引用对象，你会发现你不能通过该方法深拷贝</p>
+<p>在遇到函数、 <code>undefined</code> 或者 <code>symbol</code> 的时候，该对象也不能正常的序列化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    age: <span class="literal">undefined</span>,</span><br><span class="line">    sex: <span class="built_in">Symbol</span>(<span class="string">'male'</span>),</span><br><span class="line">    jobs: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    name: <span class="string">'yck'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(a))</span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// &#123;name: "yck"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>你会发现在上述情况中，该方法会忽略掉函数和 undefined 。</p>
+<p>但是在通常情况下，复杂数据都是可以序列化的，所以这个函数可以解决大部分问题，并且该函数是内置函数中处理深拷贝性能最快的。当然如果你的数据中含有以上三种情况下，可以使用 lodash 的深拷贝函数。</p>
+<p>如果你所需拷贝的对象含有内置类型并且不包含函数，可以使用 MessageChannel</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">structuralClone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;port1, port2&#125; = <span class="keyword">new</span> MessageChannel();</span><br><span class="line">    port2.onmessage = <span class="function"><span class="params">ev</span> =&gt;</span> resolve(ev.data);</span><br><span class="line">    port1.postMessage(obj);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: &#123;</span><br><span class="line">    c: b</span><br><span class="line">&#125;&#125;</span><br><span class="line"><span class="comment">// 注意该方法是异步的</span></span><br><span class="line"><span class="comment">// 可以处理 undefined 和循环引用对象</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> clone = <span class="keyword">await</span> structuralClone(obj)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>异步完成，可解决JSON解析方式忽略undefined,无法解决环的问题，但是还是无法复制函数。</p>
+<p>当然你可能想自己来实现一个深拷贝，但是其实实现一个深拷贝是很困难的，需要我们考虑好多种边界情况，比如原型链如何处理、DOM 如何处理等等，所以这里我们实现的深拷贝只是简易版，并且我其实更推荐使用 lodash 的深拷贝函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>) </span>&#123; </span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">isObject</span>(<span class="params">o</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">typeof</span> o === <span class="string">'object'</span> || <span class="keyword">typeof</span> o === <span class="string">'function'</span>) &amp;&amp; o !== <span class="literal">null</span> </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">if</span> (!isObject(obj)) &#123; </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'非对象'</span>) </span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">let</span> isArray = <span class="built_in">Array</span>.isArray(obj) </span><br><span class="line">  <span class="keyword">let</span> newObj = isArray ? [...obj] : &#123; ...obj &#125; </span><br><span class="line">  <span class="built_in">Reflect</span>.ownKeys(newObj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123; </span><br><span class="line">    newObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key] </span><br><span class="line">  &#125;) </span><br><span class="line">  <span class="keyword">return</span> newObj </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">let</span> obj = &#123; </span><br><span class="line">  a: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], </span><br><span class="line">  b: &#123; </span><br><span class="line">    c: <span class="number">2</span>, </span><br><span class="line">    d: <span class="number">3</span> </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">let</span> newObj = deepClone(obj) </span><br><span class="line">newObj.b.c = <span class="number">1</span> </span><br><span class="line"><span class="built_in">console</span>.log(obj.b.c) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/03/24/几个很实用的BOM属性对象方法/" class="pre-post btn btn-default" title="几个很实用的BOM属性对象方法">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">几个很实用的BOM属性对象方法</span>
+        </a>
+    
+    
+        <a href="/2019/03/04/React项目中使用better-scroll/" class="next-post btn btn-default" title="React项目中使用better-scroll">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">React项目中使用better-scroll</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深浅拷贝"><span class="toc-text">深浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#浅拷贝"><span class="toc-text">浅拷贝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#深拷贝"><span class="toc-text">深拷贝</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
